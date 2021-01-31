@@ -21,8 +21,7 @@ const Admin = sequelize.define('Admin', {
     allowNull: false
   }
 }, {
-	paranoid: true, // 表示从此以后，该表的数据不会真正被删除 ，而是增加一列deleteAt,记录删除的时间
-	logging: false
+	paranoid: true // 表示从此以后，该表的数据不会真正被删除 ，而是增加一列deleteAt,记录删除的时间
 });
 // `sequelize.define` 会返回模型, 后续对应某个模型的操作，都是通过这个模型对象来管理的。
 

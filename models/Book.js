@@ -18,8 +18,7 @@ const Book = sequelize.define("Book", {
 		allowNull: false
 	}
 }, {
-	paranoid: true,
-	logging: false
+	paranoid: true
 })
 
 module.exports = Book

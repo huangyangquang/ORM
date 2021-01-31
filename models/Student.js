@@ -19,8 +19,7 @@ const Student = sequelize.define("Student", {
 		allowNull: false
 	}
 }, {
-	paranoid: true,
-	logging: false
+	paranoid: true
 })
 
 module.exports = Student

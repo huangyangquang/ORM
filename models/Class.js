@@ -12,8 +12,7 @@ const Class = sequelize.define("Class", {
 		allowNull: false
 	}
 }, {
-	paranoid: true,
-	logging: false
+	paranoid: true
 })
 
 Class.hasMany(Student) // 一个班级有多个学生（这样就会在学生表里面建立一个外键关系）
