@@ -21,14 +21,6 @@ adminServ.updateAdmin(10, {
 
 
 
-
-
-
-
-
-
-
-
 // for example: 增加管理员 
 
 // 方式一：

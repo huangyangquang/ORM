@@ -68,7 +68,7 @@ exports.updateAdmin = async function (id, adminObj) {
 			id
 		}
 	})
-	return result // 返回的是一个数组，里面表示的是受影响的行数
+	return result // 返回的是一个数组，里面表示的是受影响的行数，为甚是个数组呢？因为它不知道我们的SQL语句写了多少条，一次运行可以有多条SQL语句，所以可能会有多条受影响的行数
 }
 
 // 上面讲得业务逻辑有点像是验证，确实呢个，验证时业务逻辑得一部分
