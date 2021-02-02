@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mockjs": "^1.1.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5"
   }

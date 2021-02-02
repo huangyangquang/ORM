@@ -1,6 +1,21 @@
 // require('./models/sync')
 
-const adminServ = require('./services/adminService')
+require('./models/relation')
+require('./mock/mockStudent')
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const adminServ = require('./services/adminService')
 
 // adminServ.addAdmin({
 // 	loginId: 'uiuiuiui',
@@ -13,11 +28,11 @@ const adminServ = require('./services/adminService')
 // 	console.log(res)
 // }) // 删除过id 为 5 ， 6， 8的模型实例
 
-adminServ.updateAdmin(10, {
-	loginId: '修改的对象'
-}).then(res => {
-	console.log(res)
-})
+// adminServ.updateAdmin(10, {
+// 	loginId: '修改的对象'
+// }).then(res => {
+// 	console.log(res)
+// })
 
 
 
