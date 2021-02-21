@@ -71,4 +71,31 @@ exports.updateAdmin = async function (id, adminObj) {
 	return result // 返回的是一个数组，里面表示的是受影响的行数，为甚是个数组呢？因为它不知道我们的SQL语句写了多少条，一次运行可以有多条SQL语句，所以可能会有多条受影响的行数
 }
 
+exports.login = async function (loginId, loginPwd) {
+	const result = await Admin.findOne({ // 里面是查询的配置 或者 说是查询条件
+		where: { // 里面条件的关系是并且关系
+			loginId,
+			loginPwd
+		}
+	}) // 本质就是使用了 limit 0, 1
+	
+	if (result && result.loginId === loginId && result.loginPwd === loginPwd) {
+		return result.toJSON()
+	}
+
+	// 结果是一个模型实例,所以可以使用之前学习的，改变模型实例的属性，然后save()...; 
+	// 不过一般很少使用这个实例，我一般会把他转换为一个普通的平面对象
+	return null; 
+}
+
+
+exports.getAdminById = async function (id) {
+	const result = await Admin.findByPk(id)
+	if(result) {
+		return result.toJSON()
+	}
+	return null;
+}
+
+
 // 上面讲得业务逻辑有点像是验证，确实呢个，验证时业务逻辑得一部分

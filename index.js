@@ -1,17 +1,23 @@
 // require('./models/sync')
 
 require('./models/relation')
-require('./mock/mockStudent')
+
+const studentServ = require('./services/studentService')
+
+studentServ.getStudents(1, 10, false, "杰").then(res => {
+	console.log(res.datas[0].Class)
+})
 
 
+// const adminServ = require('./services/adminService')
 
+// adminServ.login('KKK', '123').then(res => {
+// 	console.log(res) // 结果是一个模型实例
+// })
 
-
-
-
-
-
-
+// adminServ.getAdminById(9).then(res => {
+// 	console.log(res)
+// })
 
 
 
