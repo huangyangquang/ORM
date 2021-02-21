@@ -1,12 +1,47 @@
+const adminServ = require('./services/adminService')
+
+adminServ.updateAdmin(1, {
+	loginId: 'djakja',
+	name: '叫哥的',
+	loginPwd: '1234'
+})
+
+adminServ.login('djakja', '1234').then(res => {
+	console.log(res)
+})
+
+// adminServ.addAdmin({
+// 	loginId: 'djakja',
+// 	name: '叫金山',
+// 	loginPwd: '1234'
+// })
+
+
+
+
+
+
+
+
+
+// const md5 = require('md5')
+
+// console.log( md5('') )
+// console.log( md5('y') )
+// console.log( md5('joshua is 18 years old') )
+// console.log( md5('joshua is 18 years old') )
+// console.log( md5('joshua is 18 years oldpppppppppppppppppppppppppppppppppppppppp') )
+
+
 // require('./models/sync')
 
-require('./models/relation')
+// require('./models/relation')
 
-const studentServ = require('./services/studentService')
+// const studentServ = require('./services/studentService')
 
-studentServ.getStudents(1, 10, false, "杰").then(res => {
-	console.log(res.datas[0].Class)
-})
+// studentServ.getStudents(1, 10, false, "杰").then(res => {
+// 	console.log(res.datas[0].Class)
+// })
 
 
 // const adminServ = require('./services/adminService')
