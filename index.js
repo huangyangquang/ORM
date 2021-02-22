@@ -1,25 +1,126 @@
-const adminServ = require('./services/adminService')
+const moment = require('moment')
+moment.locale("zh-cn") // 设置语言库
 
-adminServ.updateAdmin(1, {
-	loginId: 'djakja',
-	name: '叫哥的',
-	loginPwd: '1234'
-})
+// 获取本地时间，是个moment对象，后续操作根据本地时间来操作
+console.log( moment() )
+// 获取utc时间，是个moment对象，后续操作根据utc时间来操作
+console.log( moment.utc() )
 
-adminServ.login('djakja', '1234').then(res => {
-	console.log(res)
-})
+// 同一个时刻：
+console.log( moment().toString() ) // 获取到本地时间
+console.log( moment.utc().toString() ) // 获取utc时间
+
+// 获取时间戳：
+console.log( moment().valueOf(), moment.utc().valueOf() ) // 获取到本地时间 和 utc时间 的 时间戳
+console.log( +moment(), +moment.utc() ) // 获取到本地时间 和 utc时间 的 时间戳
+
+
+// 服务器上统一使用utc
+
+
+// 根据指定时间格式来获取事时间戳：
+// 时间格式：
+	// xxxx-xx-xx
+	// xxxx/xx/xx
+	// iso标准
+	// 时间戳
+	// ...
+
+// 时间格式：时间戳
+console.log( moment(0).toString(), +moment(0) )
+console.log( moment.utc(0).toString(), +moment.utc(0) )
+
+// 其他时间格式：
+const time = '1970-01-01 00:00:00'
+console.log( moment(time).toString(), +moment(time) ) // 所以，遇见类似的时间格式，就不能使用这个
+console.log( moment.utc(time).toString(), +moment.utc(time) ) // 所以，遇见类似的时间格式，得能使用这个
+
+
+// 使用日期令牌转换：
+// 令牌：是一个格式化得字符串  例如："YYYY-MM-DD HH:mm:ss", 就是我们得时间格式得按照这个格式来
+// 它被用于moment对象 和 最终的字符串之间的转换。
+// 一个moment对象上记录了一个时间，这个时间如何使用一个字符串来展示，我就使用一个令牌。
+// 一个字符串，也是需要通过(满足)某个令牌才可以转换为一个moment对象
+
+// 转换得到一个moment对象：
+// http://momentjs.cn/docs/#/parsing/string-format/
+// 第二个参数表示支持的时间格式（令牌）： 多个令牌的话，第二个参数可以是数组，一个令牌就使用字符串就可以
+// 第三个参数表示是否严格检查： true / false
+// true:  严格的解析要求格式和输入完全匹配（推荐）
+// false: 哪怕不满足我们设置的令牌，也会看其他的满不满足
+const format = ['YYYY-MM-DD HH:mm:ss', 'YYYY-H-D H:m:s', 'x']
+console.log( moment.utc('1970-01-01 00:00:00', format, true) )
+console.log( moment.utc('1970-1-2 0:0:0', format, true) )
+console.log( moment.utc('1998/2/25', format, true) )
+console.log( moment.utc(12555255555555, format, true) )
+
+// 上面是服务器常见的使用方法，就是客户端传递数据的时候，要对数据进行一些验证。
+// 判断日期格式是否正确，能不能进行转换
+// 一个不正常的日期就转为 Moment<Invalid date>
+
+// Moment<Invalid date>还有另外一个特点： 把它转换为时间戳的话，就是NaN
+console.log( +moment.utc('1998/2/25', format, true) )
+
+// 判断是否是一个有效日期：
+console.log( moment.utc('1998/2/25', format, true).isValid() )
+console.log( moment.utc(12555255555555, format, true).isValid() )
+
+
+// 获取到moment对象之后，我们应该怎么来操作它呢？
+const m = moment.utc('2015-1-5 23:00:01', format, true)
+
+// 通过友好的方式显示出来（发生在客户端）： http://momentjs.cn/docs/#/displaying/
+// 也就是返回一个字符串
+// 1. .format()
+console.log( m.format("YY年MM月DD日 HH点mm分ss秒秒买哦") ) // 这里显示出来的是一个utc时间，因为是一个utcmoment对象
+
+// 判断是不是utc时间：
+console.log( m.isUTC() )
+
+// 如何将utc时间转换为本地时间： .loacl()
+console.log( m.local().format("YY年MM月DD日 HH点mm分ss秒秒买哦") ) // 这里显示出来的是一个本地时间
+
+
+// 比如：用户输入文本框，输入一个本地时间
+const mLocal = moment('2015-1-5 23:00:01', format, true) // 时间本地时间格式化
+// 如何将本地时间转换为utc时间： .utc()（然后转为时间戳 或者 utc时间传输到服务器）
+const local2Utc = mLocal.utc('2015-1-5 23:00:01', format, true)
+console.log( local2Utc.format("YY年MM月DD日 HH点mm分ss秒秒买哦") )
+// 如何将本地时间转换为时间：
+console.log( +mLocal )
+
+// 2. .fromNow()
+console.log( moment('2015-1-5 23:00:01', format, true).fromNow() ) // 6 years ago
+console.log( moment('2021-2-22 20:00:01', format, true).fromNow() ) // a month ago
+
+
+
+
+
+
+
+
+
+
+
+
+// const adminServ = require('./services/adminService')
+
+// adminServ.updateAdmin(1, {
+// 	loginId: 'djakja',
+// 	name: '叫哥的',
+// 	loginPwd: '1234'
+// })
+
+// adminServ.login('djakja', '1234').then(res => {
+// 	console.log(res)
+// })
 
 // adminServ.addAdmin({
 // 	loginId: 'djakja',
 // 	name: '叫金山',
 // 	loginPwd: '1234'
 // })
-
-
-
-
-
 
 
 
