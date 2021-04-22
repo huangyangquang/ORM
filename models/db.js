@@ -13,7 +13,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('schooldb', 'root', '123456', {
   host: 'localhost',
   dialect: 'mysql',
-  // logging: null // 关闭 bash 上显示的SQL语句
+  logging: null // 关闭 bash 上显示的SQL语句
 }); // 这样就创建好了“连接”（准确说是，sequelize实例），这个“连接”是来自于连接池的。 sequelize实例会自动帮我们管理连接池
 
 // 导出
