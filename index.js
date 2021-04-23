@@ -1,9 +1,151 @@
 require('./init')
-const studentServ = require('./services/studentService')
+const express = require('express')
 
-studentServ.getStudents().then(res => {
-	console.log(res)
+const app = express()
+const port = '9527'
+
+// 动态路由
+app.get('/news/:id', (req, res) => {
+	// 获取请求信息
+	console.log('请求头部:', req.headers)
+	console.log('获取id, params', req.params)
+
+	// 响应结果
+	// 响应时，要发送消息体，如下操作：
+	// 在http模块，写完之后要写个end函数，这里不需要了。这里内容已经调用了end函数了
+	// res.send('<h1>joshua 最帅</h1>')
+	// res.send({"name": "hhh"}) // 返回一个JOSN
+	
+	// 设置响应头：
+	// res.setHeader("a", '1222')
+	// res.send('<h1>joshua 设置一个响应头</h1>')
+	
+	// 重定向：
+	// 临时重定向：
+	// 链式调用： 设置响应码，header
+	// 最后调用end, 完成响应，不然客户端一直在等待我们的消息体，完成不了响应
+	// res.status(302).header('Location', 'https://duyi.ke.qq.com').end()
+	// 
+	// 简写：
+	// res.status(302).location('https://duyi.ke.qq.com').end()
+	res.redirect(302, 'https://duyi.ke.qq.com') // 第二个参数是状态码，默认是301
+
 })
+
+// 匹配任何get请求
+app.get("*", (req, res) => {
+	console.log(req) // 如果没有打印出来，因为前边已经处理好，后边会讲，中间件部分
+})
+
+app.listen(port, () => {
+	console.log(`server listen on ${port}...`);
+})
+
+
+
+
+
+
+
+
+// require('./init')
+// const express = require('express')
+
+// const app = express()
+// const port = '9527'
+
+// // req, res 不是 原生的http模块中的 req, res对象，
+// // 它们是被 express 封装过后的对象
+// // 好处就是，我们仍然可以使用它们操作流，但是可以不用去操作流了，没有必要，使用更加简单
+// app.get('/news/:id', (req, res) => {
+// 	console.log('请求头:', req.headers)
+// 	console.log('host:', req.headers.host)
+// 	console.log('请求路径:', req.path)
+// 	console.log('query参数', req.query)
+// })
+
+// app.listen(port, () => {
+// 	console.log(`server listen on ${port}...`);
+// })
+
+
+
+
+
+
+// require('./init')
+// const express = require('express')
+
+// const app = express()
+// const port = '9527'
+
+// // 直接使用 app 函数进行监听
+// // 实际上，listen内部也是使用了http模块，去创建服务器，也去监听这个端口的, 如下：
+// app.listen(port, () => {
+// 	console.log(`server listen on ${port}...`);
+// })
+
+
+// function listen (port, cb) {
+// 	const http = require('http')
+// 	http.createServer(this).listen(port, cb)
+// }
+
+
+
+
+// require('./init')
+// const express = require('express')
+// const http = require('http')
+
+// // 创建一个applicationd对象，创建一个express应用
+// // 通常我们一个服务器就创建一个express应用就可以了
+// // app实际上是一个函数，用于处理请求的函数
+// const app = express()
+// const port = '9527'
+
+// // 所以：可以直接在 http.createServer() 作为参数传入
+// // http.createServer((req, rep) => { ... })
+// const server = http.createServer(app)
+
+// // 监听：
+// server.listen(port, () => {
+// 	console.log(`server listen on ${port}...`);
+// })
+
+// // 所以，之后的请求是交给 app 这个函数来处理的
+// // app 这个函数怎么处理我们的请求呢？
+// // 它就是根据不同的配置把不同的请求路径，不同的请求方法放到不同的函数里进行处理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// require('./init')
+// const studentServ = require('./services/studentService')
+
+// studentServ.getStudents().then(res => {
+// 	console.log(res)
+// })
 
 
 
