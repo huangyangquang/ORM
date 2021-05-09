@@ -1,0 +1,16 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "package*.json",
+    "nodemon.json",
+    "public"
+  ],
+  "watch": [
+    "*.js",
+    "*.json"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

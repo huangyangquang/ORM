@@ -1,45 +1,99 @@
 require('./init')
-const express = require('express')
 
-const app = express()
-const port = '9527'
 
-// 动态路由
-app.get('/news/:id', (req, res) => {
-	// 获取请求信息
-	console.log('请求头部:', req.headers)
-	console.log('获取id, params', req.params)
 
-	// 响应结果
-	// 响应时，要发送消息体，如下操作：
-	// 在http模块，写完之后要写个end函数，这里不需要了。这里内容已经调用了end函数了
-	// res.send('<h1>joshua 最帅</h1>')
-	// res.send({"name": "hhh"}) // 返回一个JOSN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// require('./init')
+// const express = require('express')
+
+// const app = express()
+// const port = '9525'
+
+
+// app.get("*", (req, res) => {
+// 	res.send('122000')
+// })
+
+// app.listen(port, () => {
+// 	console.log(`server listen on ${port}...`);
+// })
+
+
+
+
+
+
+
+
+
+
+
+// require('./init')
+// const express = require('express')
+
+// const app = express()
+// const port = '9527'
+
+// // 动态路由
+// app.get('/news/:id', (req, res) => {
+// 	// 获取请求信息
+// 	console.log('请求头部:', req.headers)
+// 	console.log('获取id, params', req.params)
+
+// 	// 响应结果
+// 	// 响应时，要发送消息体，如下操作：
+// 	// 在http模块，写完之后要写个end函数，这里不需要了。这里内容已经调用了end函数了
+// 	// res.send('<h1>joshua 最帅</h1>')
+// 	// res.send({"name": "hhh"}) // 返回一个JOSN
 	
-	// 设置响应头：
-	// res.setHeader("a", '1222')
-	// res.send('<h1>joshua 设置一个响应头</h1>')
+// 	// 设置响应头：
+// 	// res.setHeader("a", '1222')
+// 	// res.send('<h1>joshua 设置一个响应头</h1>')
 	
-	// 重定向：
-	// 临时重定向：
-	// 链式调用： 设置响应码，header
-	// 最后调用end, 完成响应，不然客户端一直在等待我们的消息体，完成不了响应
-	// res.status(302).header('Location', 'https://duyi.ke.qq.com').end()
-	// 
-	// 简写：
-	// res.status(302).location('https://duyi.ke.qq.com').end()
-	res.redirect(302, 'https://duyi.ke.qq.com') // 第二个参数是状态码，默认是301
+// 	// 重定向：
+// 	// 临时重定向：
+// 	// 链式调用： 设置响应码，header
+// 	// 最后调用end, 完成响应，不然客户端一直在等待我们的消息体，完成不了响应
+// 	// res.status(302).header('Location', 'https://duyi.ke.qq.com').end()
+// 	// 
+// 	// 简写：
+// 	// res.status(302).location('https://duyi.ke.qq.com').end()
+// 	res.redirect(302, 'https://duyi.ke.qq.com') // 第二个参数是状态码，默认是301
 
-})
+// })
 
-// 匹配任何get请求
-app.get("*", (req, res) => {
-	console.log(req) // 如果没有打印出来，因为前边已经处理好，后边会讲，中间件部分
-})
+// // 匹配任何get请求
+// app.get("*", (req, res) => {
+// 	console.log(req) // 如果没有打印出来，因为前边已经处理好，后边会讲，中间件部分
+// })
 
-app.listen(port, () => {
-	console.log(`server listen on ${port}...`);
-})
+// app.listen(port, () => {
+// 	console.log(`server listen on ${port}...`);
+// })
 
 
 
