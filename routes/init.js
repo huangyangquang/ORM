@@ -35,13 +35,34 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 
-app.get('/css/index.css', (req, res) => {
-	console.log('66666')
-})
+// app.get('/css/index.css', (req, res) => {
+// 	console.log('66666')
+// })
 
-app.post('/api/stu', (req, res) => {
-	console.log('消息体呢：', req.body)
-})
+// app.post('/api/stu', (req, res) => {
+// 	console.log('新增学生')
+// })
+
+// app.get('/api/stu', (req, res) => {
+// 	console.log('查询学生')
+// })
+
+// app.put('/api/stu/:id', (req, res) => {
+// 	console.log('修改学生')
+// })
+
+// app.delete('/api/stu', (req, res) => {
+// 	console.log('删除学生')
+// })
+
+
+
+// 只有匹配到这个基地址，就交给对应路由处理，在路由里边会继续分情况进行处理
+app.use('/api/stu', require('./api/student.js'))
+// app.use('/api/book', require('./api/book.js'))
+// app.use('/api/admin', require('./api/admin.js'))
+// app.use('/api/class', require('./api/class.js'))
+
 
 
 // 中间件正常使用方式：
