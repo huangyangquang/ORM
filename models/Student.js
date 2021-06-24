@@ -14,7 +14,10 @@ const Student = sequelize.define("Student", {
 		// 在不影响数据库保存的内容的情况下，我们获取到的数据格式是我们所有期望的。
 		get() {
 			// this.getDataValue 用于获取对应属性的值
-			return this.getDataValue('birthday').getTime();
+			// return this.getDataValue('birthday').getTime();
+			if (this.getDataValue('birthday') instanceof Date) {
+	            return new Date(this.getDataValue('birthday')).getTime();
+	        }
 		}
 	},
 	// 虚拟属性

@@ -117,7 +117,7 @@ exports.addStudent = async function (stuObj) {
 
 
 exports.deleteStudent = async function (id) {
-	return await Student.destory({
+	return await Student.destroy({
 		where: {
 			id
 		}
@@ -128,7 +128,7 @@ exports.updateStudent = async function (id, obj) {
 	return await Student.update(obj, {
 		where: {
 			id
-		}
+		},
 	})
 }
 
